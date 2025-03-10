@@ -17,6 +17,7 @@ let currentValue = "";
 let operator = "";
 let previousValue = "";
 let history = [];
+let displayOperation = "";
 
 // Keyboard mapping for operators
 const operatorMap = {
@@ -73,37 +74,68 @@ function simulateButtonClick(value) {
 function handleCalculatorInput(value) {
   if (value >= "0" && value <= "9") {
     currentValue += value;
-    display.value = currentValue;
+    if (operator) {
+      displayOperation = displayOperation + value;
+    } else {
+      displayOperation = displayOperation || currentValue;
+    }
+    display.value = displayOperation;
   } else if (value === ".") {
     if (!currentValue.includes(".")) {
       currentValue = currentValue === "" ? "0." : currentValue + ".";
-      display.value = currentValue;
+      if (operator) {
+        displayOperation = displayOperation + currentValue.slice(-1);
+      } else {
+        displayOperation = displayOperation || currentValue;
+      }
+      display.value = displayOperation;
     }
   } else if (value === "C") {
     currentValue = "";
     previousValue = "";
     operator = "";
+    displayOperation = "";
     display.value = "";
   } else if (value === "±") {
     currentValue = (parseFloat(currentValue) * -1).toString();
-    display.value = currentValue;
+    if (operator) {
+      displayOperation = previousValue + " " + operator + " " + currentValue;
+    } else {
+      displayOperation = currentValue;
+    }
+    display.value = displayOperation;
   } else if (value === "%") {
     currentValue = (parseFloat(currentValue) / 100).toString();
-    display.value = currentValue;
+    if (operator) {
+      displayOperation = previousValue + " " + operator + " " + currentValue;
+    } else {
+      displayOperation = currentValue;
+    }
+    display.value = displayOperation;
   } else if (["+", "-", "×", "÷"].includes(value)) {
     if (currentValue !== "") {
       if (previousValue !== "") {
         calculate();
+        previousValue = currentValue;
+        operator = value;
+        displayOperation = currentValue + " " + operator + " ";
+        currentValue = "";
+      } else {
+        operator = value;
+        previousValue = currentValue;
+        displayOperation = currentValue + " " + operator + " ";
+        currentValue = "";
       }
-      operator = value;
-      previousValue = currentValue;
-      currentValue = "";
+      display.value = displayOperation;
     }
   } else if (value === "=") {
     if (currentValue !== "" && previousValue !== "" && operator !== "") {
+      displayOperation = previousValue + " " + operator + " " + currentValue;
       calculate();
       operator = "";
       previousValue = "";
+      displayOperation = currentValue;
+      display.value = displayOperation;
     }
   }
 }
@@ -185,12 +217,12 @@ function calculate() {
       break;
   }
 
-  currentValue = result.toString();
-  display.value = currentValue;
-
-  // Add to history
+  // Add to history before updating the display
   const calculation = `${prev} ${operator} ${current}`;
   addToHistory(calculation, result);
+
+  currentValue = result.toString();
+  display.value = currentValue;
 }
 
 // Add theme switching functionality
