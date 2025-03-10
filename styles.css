@@ -152,6 +152,12 @@ button:hover {
   transform: translateY(-2px);
 }
 
+/* Add active state for keyboard press */
+button.active {
+  background: #f8bbd0;
+  transform: scale(0.95);
+}
+
 .operator {
   background: #fce4ec;
   color: #e91e63;
