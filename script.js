@@ -64,6 +64,8 @@ function simulateButtonClick(value) {
   const button = Array.from(buttons).find(btn => {
     // Special handling for exponent button
     if (value === '^' && btn.innerHTML.includes('sup')) return true;
+    // Handle xy button specifically
+    if (value === 'xy' && btn.innerHTML.includes('sup')) return true;
     return btn.textContent === value;
   });
   if (button) {
@@ -122,7 +124,7 @@ function handleCalculatorInput(value) {
       displayOperation = currentValue;
     }
     display.value = displayOperation;
-  } else if (value === "( )" || value.includes("sup")) {
+  } else if (value === "( )" || value.includes("sup") || value === "xy") {
     if (value === "( )") {
       // Add opening or closing bracket based on context
       if (bracketCount === 0 || currentValue.endsWith("(")) {
@@ -137,18 +139,10 @@ function handleCalculatorInput(value) {
     } else {
       // Handle exponent (^)
       if (currentValue !== "") {
-        if (previousValue !== "") {
-          calculate();
-          previousValue = currentValue;
-          operator = "^";
-          displayOperation = currentValue + " ^ ";
-          currentValue = "";
-        } else {
-          operator = "^";
-          previousValue = currentValue;
-          displayOperation = currentValue + " ^ ";
-          currentValue = "";
-        }
+        previousValue = currentValue;
+        operator = "^";
+        displayOperation = currentValue + " ^ ";
+        currentValue = "";
         display.value = displayOperation;
       }
     }
@@ -184,7 +178,11 @@ function handleCalculatorInput(value) {
 // Modify button click handlers to use the new handleCalculatorInput function
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
-    const value = button.textContent;
+    let value = button.textContent;
+    // Special handling for exponent button
+    if (button.innerHTML.includes('sup')) {
+      value = 'xy';
+    }
     handleCalculatorInput(value);
   });
 });
@@ -294,7 +292,17 @@ function calculate() {
   const expression = displayOperation.replace(/\s/g, '');
   
   try {
-    result = evaluateExpression(expression);
+    if (operator === "^") {
+      const base = parseFloat(previousValue);
+      const exponent = parseFloat(currentValue);
+      if (isNaN(base) || isNaN(exponent)) {
+        result = 'Error';
+      } else {
+        result = Math.pow(base, exponent);
+      }
+    } else {
+      result = evaluateExpression(expression);
+    }
   } catch (error) {
     result = 'Error';
   }
