@@ -71,9 +71,16 @@ buttons.forEach((button) => {
   button.addEventListener("click", () => {
     const value = button.textContent;
 
-    if ((value >= "0" && value <= "9") || value === ".") {
+    if (value >= "0" && value <= "9") {
       currentValue += value;
       display.value = currentValue;
+    } else if (value === ".") {
+      // Only add decimal if it doesn't exist in current value
+      if (!currentValue.includes(".")) {
+        // If no number entered yet, start with "0."
+        currentValue = currentValue === "" ? "0." : currentValue + ".";
+        display.value = currentValue;
+      }
     } else if (value === "C") {
       currentValue = "";
       previousValue = "";
