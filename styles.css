@@ -525,10 +525,10 @@ button.active {
 
 .persian-cat {
   position: absolute;
-  top: -60px;
-  left: -40px;
-  width: 100px;
-  height: 100px;
+  top: -67px;
+  right: 40px;
+  width: 80px;
+  height: 80px;
   z-index: 1;
 }
 
