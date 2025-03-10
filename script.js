@@ -75,18 +75,18 @@ function handleCalculatorInput(value) {
   if (value >= "0" && value <= "9") {
     currentValue += value;
     if (operator) {
-      displayOperation = displayOperation + value;
+      displayOperation = previousValue + " " + operator + " " + currentValue;
     } else {
-      displayOperation = displayOperation || currentValue;
+      displayOperation = currentValue;
     }
     display.value = displayOperation;
   } else if (value === ".") {
     if (!currentValue.includes(".")) {
       currentValue = currentValue === "" ? "0." : currentValue + ".";
       if (operator) {
-        displayOperation = displayOperation + currentValue.slice(-1);
+        displayOperation = previousValue + " " + operator + " " + currentValue;
       } else {
-        displayOperation = displayOperation || currentValue;
+        displayOperation = currentValue;
       }
       display.value = displayOperation;
     }
