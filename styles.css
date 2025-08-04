@@ -109,17 +109,7 @@ body {
   transform: translateY(-2px);
 }
 
-#pi-button {
-  background: #ff4081 !important;
-  color: white !important;
-  font-weight: bold !important;
-  border: 2px solid #e91e63 !important;
-}
 
-#pi-button:hover {
-  background: #e91e63 !important;
-  transform: scale(1.05);
-}
 
 .title {
   text-align: center;

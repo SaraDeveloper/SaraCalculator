@@ -151,17 +151,14 @@ function handleCalculatorInput(value) {
     }
     display.value = displayOperation;
   } else if (value === "PI") {
-    console.log("PI button clicked! Adding pi value:", Math.PI);
-    console.log("Current state - currentValue:", currentValue, "operator:", operator, "previousValue:", previousValue);
-    currentValue = Math.PI.toString();
+    console.log("PI button clicked! Adding pi value: 3.14...");
+    currentValue = "3.14...";
     if (operator) {
       displayOperation = previousValue + " " + operator + " " + currentValue;
     } else {
       displayOperation = currentValue;
     }
-    console.log("Updated displayOperation:", displayOperation);
     display.value = displayOperation;
-    console.log("Display value set to:", display.value);
   } else if (value === "( )" || value.includes("sup") || value === "xy") {
     if (value === "( )") {
       // Add opening or closing bracket based on context
@@ -227,7 +224,6 @@ buttons.forEach((button) => {
     // Special handling for PI button
     if (button.id === 'pi-button') {
       console.log("PI button detected by ID!");
-      alert("PI button clicked!"); // Temporary alert to confirm click
       value = 'PI';
     }
     
