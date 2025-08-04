@@ -129,7 +129,6 @@ function handleCalculatorInput(value) {
     display.value = displayOperation;
   } else if (value === "PI") {
     console.log("PI button clicked! Adding pi value: 3.14...");
-    alert("PI button clicked! Should display 3.14..."); // Temporary test
     currentValue = "3.14...";
     if (operator) {
       displayOperation = previousValue + " " + operator + " " + currentValue;
