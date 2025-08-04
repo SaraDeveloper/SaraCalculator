@@ -7,6 +7,31 @@ window.addEventListener("load", function () {
       loadingOverlay.style.display = "none";
     }, 500);
   }, 2000);
+  
+  // Test PI button functionality
+  setTimeout(function() {
+    const piButton = document.getElementById('pi-button');
+    if (piButton) {
+      console.log("PI button found:", piButton);
+      console.log("PI button text:", piButton.textContent);
+      console.log("PI button ID:", piButton.id);
+      
+      // Test PI functionality directly
+      console.log("Testing PI functionality directly...");
+      handleCalculatorInput("PI");
+      console.log("After PI test - display value:", display.value);
+      
+      // Add a global test function
+      window.testPiButton = function() {
+        console.log("Manual PI test triggered");
+        handleCalculatorInput("PI");
+        console.log("Display value after manual test:", display.value);
+      };
+      console.log("You can also run testPiButton() in the console to test manually");
+    } else {
+      console.log("PI button NOT found!");
+    }
+  }, 2500);
 });
 
 const display = document.querySelector(".display");
@@ -202,6 +227,7 @@ buttons.forEach((button) => {
     // Special handling for PI button
     if (button.id === 'pi-button') {
       console.log("PI button detected by ID!");
+      alert("PI button clicked!"); // Temporary alert to confirm click
       value = 'PI';
     }
     
