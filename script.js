@@ -35,7 +35,8 @@ const operatorMap = {
   '.': '.',
   '(': '( )',
   ')': '( )',
-  '^': 'xy'
+  '^': 'xy',
+  'p': 'PI'
 };
 
 let bracketCount = 0;
@@ -118,6 +119,15 @@ function handleCalculatorInput(value) {
     display.value = displayOperation;
   } else if (value === "%") {
     currentValue = (parseFloat(currentValue) / 100).toString();
+    if (operator) {
+      displayOperation = previousValue + " " + operator + " " + currentValue;
+    } else {
+      displayOperation = currentValue;
+    }
+    display.value = displayOperation;
+  } else if (value === "PI") {
+    console.log("PI button clicked! Adding pi value:", Math.PI);
+    currentValue = Math.PI.toString();
     if (operator) {
       displayOperation = previousValue + " " + operator + " " + currentValue;
     } else {
