@@ -8,30 +8,7 @@ window.addEventListener("load", function () {
     }, 500);
   }, 2000);
   
-  // Test PI button functionality
-  setTimeout(function() {
-    const piButton = document.getElementById('pi-button');
-    if (piButton) {
-      console.log("PI button found:", piButton);
-      console.log("PI button text:", piButton.textContent);
-      console.log("PI button ID:", piButton.id);
-      
-      // Test PI functionality directly
-      console.log("Testing PI functionality directly...");
-      handleCalculatorInput("PI");
-      console.log("After PI test - display value:", display.value);
-      
-      // Add a global test function
-      window.testPiButton = function() {
-        console.log("Manual PI test triggered");
-        handleCalculatorInput("PI");
-        console.log("Display value after manual test:", display.value);
-      };
-      console.log("You can also run testPiButton() in the console to test manually");
-    } else {
-      console.log("PI button NOT found!");
-    }
-  }, 2500);
+
 });
 
 const display = document.querySelector(".display");
@@ -152,6 +129,7 @@ function handleCalculatorInput(value) {
     display.value = displayOperation;
   } else if (value === "PI") {
     console.log("PI button clicked! Adding pi value: 3.14...");
+    alert("PI button clicked! Should display 3.14..."); // Temporary test
     currentValue = "3.14...";
     if (operator) {
       displayOperation = previousValue + " " + operator + " " + currentValue;
