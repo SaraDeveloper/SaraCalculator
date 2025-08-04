@@ -3,6 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <title>Simple Calculator</title>
     <!-- Bootstrap 5 CSS -->
     <link
@@ -67,13 +70,13 @@
               </div>
             </div>
 
-            <!-- First Row -->
+            <!-- First Row - Updated with PI button -->
             <div class="row g-2 mb-2">
               <div class="col-3">
                 <button class="calc-btn clear w-100">C</button>
               </div>
               <div class="col-3">
-                <button class="calc-btn operator w-100" id="pi-button">PI</button>
+                <button class="calc-btn operator w-100" id="pi-button" style="background: #ff4081 !important; color: white !important; font-weight: bold !important; border: 2px solid #e91e63 !important;">PI</button>
               </div>
               <div class="col-3">
                 <button class="calc-btn operator w-100">x<sup>y</sup></button>
