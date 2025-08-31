@@ -137,18 +137,21 @@ function handleCalculatorInput(value) {
       displayOperation = currentValue;
     }
     display.value = displayOperation;
-  } else if (value === "( )" || value.includes("sup") || value === "xy" || value === "√") {
-    if (value === "( )") {
-      // Add opening or closing bracket based on context
-      if (bracketCount === 0 || currentValue.endsWith("(")) {
-        currentValue += "(";
-        bracketCount++;
-      } else {
-        currentValue += ")";
-        bracketCount--;
-      }
+  } else if (value === "(" || value === ")" || value.includes("sup") || value === "xy" || value === "√") {
+    if (value === "(") {
+      // Add opening bracket
+      currentValue += "(";
+      bracketCount++;
       displayOperation = currentValue;
       display.value = displayOperation;
+    } else if (value === ")") {
+      // Add closing bracket if there are open brackets
+      if (bracketCount > 0) {
+        currentValue += ")";
+        bracketCount--;
+        displayOperation = currentValue;
+        display.value = displayOperation;
+      }
     } else if (value === "√") {
       // Handle square root
       console.log("Root function triggered! Current value:", currentValue);
@@ -229,6 +232,19 @@ buttons.forEach((button) => {
       console.log("PI button detected by ID!");
       value = 'PI';
     }
+    
+    // Special handling for bracket buttons
+    if (button.id === 'open-bracket') {
+      console.log("Open bracket button detected!");
+      value = '(';
+    }
+    
+    if (button.id === 'close-bracket') {
+      console.log("Close bracket button detected!");
+      value = ')';
+    }
+    
+
     
     // Special handling for root button
     if (button.id === 'root-button') {
