@@ -192,6 +192,13 @@ button.active {
   background: #f8bbd0;
 }
 
+/* Ensure root button is visible */
+#root-button {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
 .theme-selector {
   display: flex;
   gap: 12px;

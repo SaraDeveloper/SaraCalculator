@@ -38,6 +38,7 @@ const operatorMap = {
   '(': '( )',
   ')': '( )',
   '^': 'xy',
+  'r': '√',
   'p': 'PI'
 };
 
@@ -136,7 +137,7 @@ function handleCalculatorInput(value) {
       displayOperation = currentValue;
     }
     display.value = displayOperation;
-  } else if (value === "( )" || value.includes("sup") || value === "xy") {
+  } else if (value === "( )" || value.includes("sup") || value === "xy" || value === "√") {
     if (value === "( )") {
       // Add opening or closing bracket based on context
       if (bracketCount === 0 || currentValue.endsWith("(")) {
@@ -148,6 +149,19 @@ function handleCalculatorInput(value) {
       }
       displayOperation = currentValue;
       display.value = displayOperation;
+    } else if (value === "√") {
+      // Handle square root
+      if (currentValue !== "") {
+        const num = parseFloat(currentValue);
+        if (num >= 0) {
+          currentValue = Math.sqrt(num).toString();
+          displayOperation = currentValue;
+          display.value = displayOperation;
+        } else {
+          currentValue = "Error";
+          display.value = "Error";
+        }
+      }
     } else {
       // Handle exponent (^)
       if (currentValue !== "") {
@@ -202,6 +216,12 @@ buttons.forEach((button) => {
     if (button.id === 'pi-button') {
       console.log("PI button detected by ID!");
       value = 'PI';
+    }
+    
+    // Special handling for root button
+    if (button.id === 'root-button') {
+      console.log("Root button detected by ID!");
+      value = '√';
     }
     
     console.log("Calling handleCalculatorInput with value:", value);
