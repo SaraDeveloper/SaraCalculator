@@ -151,16 +151,23 @@ function handleCalculatorInput(value) {
       display.value = displayOperation;
     } else if (value === "√") {
       // Handle square root
+      console.log("Root function triggered! Current value:", currentValue);
       if (currentValue !== "") {
         const num = parseFloat(currentValue);
+        console.log("Parsed number:", num);
         if (num >= 0) {
-          currentValue = Math.sqrt(num).toString();
+          const result = Math.sqrt(num);
+          console.log("Square root result:", result);
+          currentValue = result.toString();
           displayOperation = currentValue;
           display.value = displayOperation;
         } else {
+          console.log("Negative number, showing error");
           currentValue = "Error";
           display.value = "Error";
         }
+      } else {
+        console.log("No current value to take square root of");
       }
     } else {
       // Handle exponent (^)
@@ -207,6 +214,11 @@ buttons.forEach((button) => {
     let value = button.textContent;
     console.log("Button clicked:", value, "Button ID:", button.id);
     
+    // Test for root button specifically
+    if (button.id === 'root-button') {
+      console.log("ROOT BUTTON CLICKED!");
+    }
+    
     // Special handling for exponent button
     if (button.innerHTML.includes('sup')) {
       value = 'xy';
@@ -222,6 +234,7 @@ buttons.forEach((button) => {
     if (button.id === 'root-button') {
       console.log("Root button detected by ID!");
       value = '√';
+      console.log("Setting value to √ for root button");
     }
     
     console.log("Calling handleCalculatorInput with value:", value);
