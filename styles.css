@@ -6,7 +6,32 @@
 }
 
 /* Override Bootstrap and ensure Dancing Script font is used everywhere */
-html, body, div, span, h1, h2, h3, h4, h5, h6, p, button, input, label, li, ul, ol, a {
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, button, input, label, li, ul, ol, a, 
+i, strong, b, em, small, sub, sup, code, pre, kbd, samp, var, mark, time, 
+.form-control, .btn, .form-label, .form-text, .invalid-feedback, .valid-feedback,
+.calc-btn, .operator, .equals, .clear, .history-toggle, .clear-history,
+.display, .title, .history-title, .welcome-text, .history-item {
+  font-family: "Dancing Script", cursive !important;
+}
+
+/* Additional Bootstrap overrides */
+.container, .row, .col, .col-12, .col-md-5, .col-lg-4, .col-md-4, .col-lg-3,
+.py-5, .mb-4, .mb-2, .mb-3, .mb-md-0, .text-center, .justify-content-center,
+.d-flex, .gap-2, .w-100, .h-100, .p-4, .p-0, .border-0, .flex-grow-1,
+.overflow-y-auto, .d-none, .d-md-block, .d-md-none, .offcanvas, .offcanvas-end,
+.offcanvas-header, .offcanvas-body, .btn-close, .history-section, .history-list,
+.theme-selector, .theme-option, .active, .loading-overlay, .loading-emoji,
+.persian-cat, .title-container {
+  font-family: "Dancing Script", cursive !important;
+}
+
+/* Ensure superscript and subscript text also use Dancing Script */
+sup, sub {
+  font-family: "Dancing Script", cursive !important;
+}
+
+/* Ensure Font Awesome icons inherit font family */
+.fas, .fa, .far, .fab {
   font-family: "Dancing Script", cursive !important;
 }
 
