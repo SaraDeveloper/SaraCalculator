@@ -399,3 +399,79 @@ themeOptions.forEach((option) => {
     body.className = `theme-${theme}`;
   });
 }); 
+
+// Add new page functionality
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('DOM loaded, looking for new page button...');
+  const newPageBtn = document.getElementById('new-page-btn');
+  console.log('Found button:', newPageBtn);
+  if (newPageBtn) {
+    console.log('Button found, adding click listener...');
+    newPageBtn.addEventListener('click', function() {
+      // Create a new window with an empty page
+      const newWindow = window.open('', '_blank', 'width=800,height=600,scrollbars=yes,resizable=yes');
+      
+      // Write HTML content to the new window
+      newWindow.document.write(`
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>New Page - Sara Calculator</title>
+          <style>
+            body {
+              margin: 0;
+              padding: 20px;
+              font-family: Arial, sans-serif;
+              background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+              color: white;
+              min-height: 100vh;
+            }
+            .header {
+              text-align: center;
+              margin-bottom: 30px;
+            }
+            .content {
+              background: rgba(255, 255, 255, 0.1);
+              padding: 30px;
+              border-radius: 15px;
+              backdrop-filter: blur(10px);
+              box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            }
+            .back-btn {
+              background: rgba(255, 255, 255, 0.2);
+              border: none;
+              color: white;
+              padding: 12px 24px;
+              border-radius: 25px;
+              cursor: pointer;
+              font-size: 16px;
+              transition: all 0.3s ease;
+              margin-top: 20px;
+            }
+            .back-btn:hover {
+              background: rgba(255, 255, 255, 0.3);
+              transform: translateY(-2px);
+            }
+          </style>
+        </head>
+        <body>
+          <div class="header">
+            <h1>✨ New Page ✨</h1>
+            <p>This is your new empty page!</p>
+          </div>
+          <div class="content">
+            <h2>Welcome!</h2>
+            <p>You can add any content you want here.</p>
+            <p>This page opened from your calculator website.</p>
+            <button class="back-btn" onclick="window.close()">Close Page</button>
+          </div>
+        </body>
+        </html>
+      `);
+      
+      newWindow.document.close();
+    });
+  }
+});
