@@ -594,3 +594,30 @@ button.active {
   60% { transform: rotate(0deg); }
   100% { transform: rotate(0deg); }
 } 
+
+.cheat-sheet-container {
+  margin-bottom: 20px !important;
+  text-align: center !important;
+}
+
+/* New Cheat Sheet Button Class */
+.cheat-sheet-button {
+  background-color: #ff6b9d !important;
+  color: white !important;
+  border: 2px solid #ff6b9d !important;
+  border-radius: 8px !important;
+  font-size: 16px !important;
+  font-weight: bold !important;
+  padding: 8px 16px !important;
+  display: inline-block !important;
+  width: auto !important;
+  margin-bottom: 20px !important;
+  cursor: pointer !important;
+  font-family: "Dancing Script", cursive !important;
+}
+
+.cheat-sheet-button:hover {
+  background-color: #ff4d8a !important;
+  border-color: #ff4d8a !important;
+  transform: translateY(-2px) !important;
+} 
