@@ -670,4 +670,40 @@ html body div.container div.row div.col-12 div.cheat-sheet-container a#cheat-she
   box-shadow: 0 16px 32px rgba(0,0,0,0.3) !important;
   text-decoration: none !important;
   line-height: 1.2 !important;
+}
+
+/* Extremely aggressive override - this should definitely work */
+#cheat-sheet-btn {
+  font-size: 96px !important;
+  padding: 50px 100px !important;
+  min-height: 250px !important;
+  min-width: 700px !important;
+  border: 8px solid #ff6b9d !important;
+  border-radius: 30px !important;
+  background-color: #ff6b9d !important;
+  color: white !important;
+  display: inline-block !important;
+  width: auto !important;
+  margin-bottom: 20px !important;
+  cursor: pointer !important;
+  position: relative !important;
+  z-index: 99999 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5) !important;
+  text-decoration: none !important;
+  line-height: 1.2 !important;
+  font-weight: bold !important;
+  font-family: "Dancing Script", cursive !important;
+}
+
+/* Force override any potential hiding */
+#cheat-sheet-btn[style*="font-size"],
+#cheat-sheet-btn[style*="padding"],
+#cheat-sheet-btn[style*="min-height"],
+#cheat-sheet-btn[style*="min-width"] {
+  font-size: 96px !important;
+  padding: 50px 100px !important;
+  min-height: 250px !important;
+  min-width: 700px !important;
 } 
