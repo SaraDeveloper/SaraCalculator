@@ -214,6 +214,11 @@ function handleCalculatorInput(value) {
 // Modify button click handlers to use the new handleCalculatorInput function
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
+    // Skip the cheat sheet button - it has its own handler
+    if (button.id === 'cheat-sheet-btn') {
+      return;
+    }
+    
     let value = button.textContent;
     console.log("Button clicked:", value, "Button ID:", button.id);
     
@@ -244,7 +249,7 @@ buttons.forEach((button) => {
       value = ')';
     }
     
-
+    
     
     // Special handling for root button
     if (button.id === 'root-button') {
@@ -400,16 +405,20 @@ themeOptions.forEach((option) => {
   });
 }); 
 
-// Add new page functionality
+// Add cheat sheet functionality
 document.addEventListener('DOMContentLoaded', function() {
-  console.log('DOM loaded, looking for new page button...');
-  const newPageBtn = document.getElementById('new-page-btn');
-  console.log('Found button:', newPageBtn);
-  if (newPageBtn) {
-    console.log('Button found, adding click listener...');
-    newPageBtn.addEventListener('click', function() {
-      // Create a new window with an empty page
-      const newWindow = window.open('', '_blank', 'width=800,height=600,scrollbars=yes,resizable=yes');
+  console.log('DOM loaded, looking for cheat sheet link...');
+  const cheatSheetLink = document.getElementById('cheat-sheet-btn');
+  console.log('Found link:', cheatSheetLink);
+  if (cheatSheetLink) {
+    console.log('Link found, adding click listener...');
+    cheatSheetLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      console.log('Cheat Sheet button clicked!');
+      
+      // Create a new window with cheat sheet content
+      const newWindow = window.open('', '_blank', 'width=1000,height=800,scrollbars=yes,resizable=yes');
       
       // Write HTML content to the new window
       newWindow.document.write(`
@@ -418,13 +427,13 @@ document.addEventListener('DOMContentLoaded', function() {
         <head>
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>New Page - Sara Calculator</title>
+          <title>Cheat Sheet - Sara Calculator</title>
           <style>
             body {
               margin: 0;
               padding: 20px;
-              font-family: Arial, sans-serif;
-              background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+              font-family: "Dancing Script", cursive;
+              background: linear-gradient(135deg, #ff6b9d 0%, #ff4d8a 100%);
               color: white;
               min-height: 100vh;
             }
@@ -458,14 +467,22 @@ document.addEventListener('DOMContentLoaded', function() {
         </head>
         <body>
           <div class="header">
-            <h1>✨ New Page ✨</h1>
-            <p>This is your new empty page!</p>
+            <h1>📚 Calculator Cheat Sheet 📚</h1>
+            <p>Quick reference for all calculator functions!</p>
           </div>
           <div class="content">
-            <h2>Welcome!</h2>
-            <p>You can add any content you want here.</p>
-            <p>This page opened from your calculator website.</p>
-            <button class="back-btn" onclick="window.close()">Close Page</button>
+            <h2>Basic Operations</h2>
+            <p>➕ Addition: Use the + button</p>
+            <p>➖ Subtraction: Use the - button</p>
+            <p>✖️ Multiplication: Use the × button</p>
+            <p>➗ Division: Use the ÷ button</p>
+            <p>💯 Percentage: Use the % button</p>
+            <p>🔄 Clear: Use the C button</p>
+            <p>📊 PI: Use the PI button for π value</p>
+            <p>🔢 Square Root: Use the √ button</p>
+            <p>📈 Exponent: Use the xʸ button</p>
+            <p>🔀 Parentheses: Use ( and ) buttons</p>
+            <button class="back-btn" onclick="window.close()">Close Cheat Sheet</button>
           </div>
         </body>
         </html>

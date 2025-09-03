@@ -621,3 +621,53 @@ button.active {
   border-color: #ff4d8a !important;
   transform: translateY(-2px) !important;
 } 
+
+/* Maximum specificity override - this should win over everything */
+html body div.container div.row div.col-12 div.cheat-sheet-container a#cheat-sheet-btn.cheat-sheet-link {
+  font-size: 72px !important;
+  padding: 40px 80px !important;
+  min-height: 180px !important;
+  min-width: 500px !important;
+  border: 6px solid #ff6b9d !important;
+  border-radius: 25px !important;
+  background-color: #ff6b9d !important;
+  color: white !important;
+  display: inline-block !important;
+  width: auto !important;
+  margin-bottom: 20px !important;
+  cursor: pointer !important;
+  position: relative !important;
+  z-index: 99999 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  box-shadow: 0 16px 32px rgba(0,0,0,0.3) !important;
+  text-decoration: none !important;
+  line-height: 1.2 !important;
+  font-weight: bold !important;
+  font-family: "Dancing Script", cursive !important;
+}
+
+/* Basic class styles */
+.cheat-sheet-link {
+  background-color: #ff6b9d !important;
+  color: white !important;
+  border: 6px solid #ff6b9d !important;
+  border-radius: 25px !important;
+  font-size: 72px !important;
+  font-weight: bold !important;
+  padding: 40px 80px !important;
+  display: inline-block !important;
+  width: auto !important;
+  margin-bottom: 20px !important;
+  cursor: pointer !important;
+  font-family: "Dancing Script", cursive !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 99999 !important;
+  position: relative !important;
+  min-height: 180px !important;
+  min-width: 500px !important;
+  box-shadow: 0 16px 32px rgba(0,0,0,0.3) !important;
+  text-decoration: none !important;
+  line-height: 1.2 !important;
+} 
